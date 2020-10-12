@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View,Image, FlatList, ScrollView} from 'react-native'
+import {View,Image, FlatList, ScrollView,StyleSheet,ActivityIndicator} from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import TourComponent from '../components/TourComponent';
@@ -10,15 +10,22 @@ export default class TourScreen extends Component{
         data:[]
     }
     render(){
-        return(
+        return this.state.data.length>5?(
           <View>
           <FlatList
             data={this.state.data}
             renderItem={(obj)=>(
-              <TourComponent results={obj.item} onPress={this.props.onPress}></TourComponent>
+              <TourComponent results={obj.item} onPress={()=>this.props.navigation.navigate('TourDetail',{tourItem:obj.item})}></TourComponent>
               )}
             keyExtractor={(item,index)=>index}>
           </FlatList>
+          </View>
+        )
+        :(
+          <View style={styles.loadingContainer}>
+              <Image source={require('../img/ic_tour.png')} width='90'></Image>
+              <Text></Text>
+              <ActivityIndicator color='#d8d8d8' size='large'></ActivityIndicator>
           </View>
         )
     }//render()
@@ -33,3 +40,9 @@ export default class TourScreen extends Component{
       fetch(tourUrl).then(response=>response.json()).then(json=>this.setState({data:json.results}))
     }
 }
+
+const styles= StyleSheet.create({
+  loadingContainer:{
+      flex:1,justifyContent:'center',alignItems:'center'
+  }
+})

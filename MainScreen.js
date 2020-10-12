@@ -10,6 +10,7 @@ import RestScreen from './screen/rest'
 import FoodScreen from './screen/food'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Intro from './Intro';
+import TourNav from './navigators/navi_tour';
 const Tab= createMaterialTopTabNavigator()
 
 export default class Main extends Component{
@@ -26,7 +27,7 @@ export default class Main extends Component{
             //<Intro></Intro>
             <Container>
                 <Header style={styles.header}>
-                    <Body style={{flexDirection:'column', alignItems:'center', marginVertical:4}}>
+                    <Body style={{flexDirection:'column', alignItems:'center'}}>
                         {/* <Image source={require('./img/tourTitle.png')} style={styles.titleImg}></Image> */}
                         <Title style={styles.title}> {this.state.title} </Title>
                     </Body>
@@ -34,10 +35,9 @@ export default class Main extends Component{
                 
                 <NavigationContainer>
                     <Tab.Navigator>
-                        <Tab.Screen name='tour' component={TourScreen} 
-                            listeners={{tabPress:()=>this.setState({title:'온김해 보고가'})}}
-                            ></Tab.Screen>
-                        <Tab.Screen name='festival' component={FestivalScreen}
+                        <Tab.Screen name='관광' component={TourNav}
+                            listeners={{tabPress:()=>this.setState({title:'온김해 보고가'})}}></Tab.Screen>
+                        <Tab.Screen name='축제' component={FestivalScreen}
                             listeners={{tabPress:()=>this.setState({title:'온김해 즐겨'})}}></Tab.Screen>
                         <Tab.Screen name='맛집' component={FoodScreen}
                             listeners={{tabPress:()=>this.setState({title:'온김해 먹고가'})}}></Tab.Screen>
@@ -56,7 +56,7 @@ const styles=StyleSheet.create({
     },
     title:{
         width:'100%',textAlign:'center', color:'black',
-        fontFamily: 'fantasy'
+        fontFamily: 'JSArirang', fontSize:30
     },
     titleImg:{
         flex:1,

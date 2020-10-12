@@ -7,8 +7,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default TourComponent=props=>{
 
     return(
-        <View style={{marginHorizontal:4, marginVertical:8}}>
         <TouchableOpacity
+            style={{marginHorizontal:4, marginVertical:8}}
             onPress={()=>props.onPress(props.results.idx)}>
           <Card>
             <CardItem>
@@ -42,6 +42,5 @@ export default TourComponent=props=>{
             </CardItem>
           </Card>
         </TouchableOpacity>
-        </View>
     )
 }
