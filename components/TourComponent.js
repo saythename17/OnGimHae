@@ -1,6 +1,6 @@
 import React from 'react'
 import {View,Image} from 'react-native'
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Item } from 'native-base';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -9,7 +9,7 @@ export default TourComponent=props=>{
     return(
         <TouchableOpacity
             style={{marginHorizontal:4, marginVertical:8}}
-            onPress={()=>props.onPress(props.results.idx)}>
+            onPress={()=>props.onPress(props.results)}>
           <Card>
             <CardItem>
               <Left>

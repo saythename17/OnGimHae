@@ -28,13 +28,14 @@ export default class TourDetail extends Component {
         return this.state.data? (
             <ScrollView>
             <Container>
-                <View>
+                <Text> {this.state.data.idx} </Text>
+                {/* <View>
                 <DeckSwiper
                     ref={(c) => this._deckSwiper = c}
                     dataSource={cards}
                     renderEmpty={() =>
                     <View style={{ alignSelf: "center" }}>
-                        <Text>{item.name}</Text>
+                        <Text> {this.props.data.idx} </Text>
                     </View>
                     }
                     renderItem={item =>
@@ -44,7 +45,7 @@ export default class TourDetail extends Component {
                         </CardItem>
                         <CardItem>
                         <Icon name="heart" style={{ color: '#5b86e5' }} />
-                        <Text>{item.name}</Text>
+                        <Text> {this.props.data.idx} </Text>
                         </CardItem>
                     </Card>
                     }
@@ -57,22 +58,28 @@ export default class TourDetail extends Component {
                 <Button onPress={() => this._deckSwiper._root.swipeRight()}>
                     <Icon name="right" />
                 </Button>
-                </View>
+                </View> */}
             </Container>
             </ScrollView>
         )
         :(
             <View style={styles.loadingContainer}>
                 <Image source={require('../img/ic_tour.png')} width='90'></Image>
-                <Text></Text>
+                <Text> aaaaaaa </Text>
                 <ActivityIndicator color='#d8d8d8' size='large'></ActivityIndicator>
             </View>
         )
     }
 
     componentDidMount=()=>{
-        const item = this.props.route.params.tourItem
-        this.setState({data:item})
+        try {
+            const item = this.props.route.params.item
+            alert(''+item)
+            this.setState({data:item}) 
+        } catch (error) {
+            
+        }
+        
     }
 }
 

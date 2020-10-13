@@ -17,9 +17,7 @@ export default class Main extends Component{
     state={
         title:'온김해 보고가'
     }
-    render(){
-        const festivalUrl='http://www.gimhae.go.kr/openapi/tour/festival.do'
-        
+    render(){        
         const foodUrl='http://www.gimhae.go.kr/openapi/tour/restaurant.do'//맛집 정보
          
         const restUrl='http://www.gimhae.go.kr/openapi/tour/lodging.do'//숙소 정보
@@ -32,9 +30,8 @@ export default class Main extends Component{
                         <Title style={styles.title}> {this.state.title} </Title>
                     </Body>
                 </Header>
-                
-                <NavigationContainer>
-                    <Tab.Navigator>
+
+                <Tab.Navigator>
                         <Tab.Screen name='관광' component={TourNav}
                             listeners={{tabPress:()=>this.setState({title:'온김해 보고가'})}}></Tab.Screen>
                         <Tab.Screen name='축제' component={FestivalScreen}
@@ -43,8 +40,7 @@ export default class Main extends Component{
                             listeners={{tabPress:()=>this.setState({title:'온김해 먹고가'})}}></Tab.Screen>
                         <Tab.Screen name='숙소' component={RestScreen}
                             listeners={{tabPress:()=>this.setState({title:'온김해 쉬고가'})}}></Tab.Screen>
-                    </Tab.Navigator>               
-                </NavigationContainer>
+                </Tab.Navigator>   
             </Container>
         )
     }//render()

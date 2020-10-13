@@ -14,8 +14,8 @@ export default class TourScreen extends Component{
           <View>
           <FlatList
             data={this.state.data}
-            renderItem={(obj)=>(
-              <TourComponent results={obj.item} onPress={()=>this.props.navigation.navigate('TourDetail',{tourItem:obj.item})}></TourComponent>
+            renderItem={({item})=>(
+              <TourComponent results={item} onPress={item=>this.props.navigation.navigate('TourDetail',{item})}></TourComponent>
               )}
             keyExtractor={(item,index)=>index}>
           </FlatList>
@@ -37,7 +37,12 @@ export default class TourScreen extends Component{
       //cultural asset infomation url
       const assetUrl='http://www.gimhae.go.kr/openapi/tour/asset.do'
 
-      fetch(tourUrl).then(response=>response.json()).then(json=>this.setState({data:json.results}))
+      try {
+        fetch(tourUrl).then(response=>response.json()).then(json=>this.setState({data:json.results}))
+      } catch (error) {
+        console.log(error+'')
+      }
+      
     }
 }
 

@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {View,Image,StyleSheet, ActivityIndicator} from 'react-native'
 
-export default Intro =()=>{
-    return(
-        <View style={styles.container}>
-            <Image source={require('./img/Logo.png')} style={styles.logo}></Image>
-            <ActivityIndicator color='#0055A2' size='large' style={styles.indicator}></ActivityIndicator>
-        </View>
-    )
+export default class Intro extends Component{
+    render(){
+        return(
+            <View style={styles.container}>
+                <Image source={require('./img/Logo.png')} style={styles.logo}></Image>
+            </View>
+        )
+    }
+
+    componentDidMount(){
+        const p=this.props
+        setTimeout(()=>p.navigation.navigate('Main'),2500)
+    }
 }
 
 const styles=StyleSheet.create({
